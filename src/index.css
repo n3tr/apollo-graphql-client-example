@@ -1,5 +1,10 @@
 body {
   margin: 0;
   padding: 0;
-  font-family: sans-serif;
+  font-family: Arial, Helvetica, Sans-serif, Geneva, Tahoma;
+  background: #3C3963;
+  color: #e9e5f6;
+  font-size: 85%;
 }
+
+
