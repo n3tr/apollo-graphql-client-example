@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import styled from 'styled-components'
 import TopicList from './components/TopicList'
+import DisplayPost from './components/DisplayPost'
 
 const Container = styled.div`
   width: 800px;
@@ -18,6 +19,7 @@ class App extends Component {
       <div>
         <Header/>
         <Container className="container">
+          <DisplayPost />
           <TopicList />
         </Container>
       </div>
