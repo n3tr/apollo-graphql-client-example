@@ -1,5 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
+import gql from 'graphql-tag'
+import { graphql } from 'react-apollo'
 
 
 const LoginBoxWrapepr = styled.div`
@@ -46,18 +48,39 @@ const LoginBoxWrapepr = styled.div`
 `
 
 class LoginPage extends React.Component {
+
+  state = {
+    username: '',
+    password: ''
+  }
+
+  onUsernameChange = (e) => {
+    e.preventDefault()
+    this.setState({ username: e.target.value })
+  }
+
+  onPasswordChange = (e) => {
+    e.preventDefault()
+    this.setState({ password: e.target.value })
+  }
+
+  onSubmit = (e) => {
+    e.preventDefault()
+    this.props.onSubmit(this.state.username, this.state.password)
+  }
+
   render() {
     return(
       <LoginBoxWrapepr>
         <h2>เข้าสู่ระบบ</h2>
-        <form>
+        <form onSubmit={this.onSubmit}>
           <div className="input-container">
             <label>อีเมล์</label>
-            <input className="text" name="username" type="text" />
+            <input className="text" name="username" type="text" value={this.state.username} onChange={this.onUsernameChange} />
           </div>
           <div className="input-container">
             <label>รหัสผ่าน</label>
-            <input className="text" name="password" type="password" />
+            <input className="text" name="password" type="password" value={this.state.password} onChange={this.onPasswordChange} />
           </div>
 
           <div className="input-container">
@@ -69,5 +92,23 @@ class LoginPage extends React.Component {
   }
 }
 
+const mutation = gql`
+mutation login($username: String, $password: String) {
+  login(username: $username, password: $password)
+}
+`
 
-export default LoginPage
+export default graphql(mutation, {
+  props: ({ mutate, ownProps }) => {
+    const { history } = ownProps
+    return {
+      onSubmit: async (username, password) => {
+        const result = await mutate({ variables: { username, password }})
+        if (result.data.login){
+          localStorage.setItem('token', result.data.login)
+          history.replace('/')
+        }
+      }
+    }
+  }
+})(LoginPage)

@@ -27,7 +27,6 @@ class Home extends React.Component {
     if (this.props.loading === true) {
       return <p>Loading...</p>
     }
-    console.log(this.props.posts)
     return (
       <div>
         <PostList posts={this.props.posts}/>

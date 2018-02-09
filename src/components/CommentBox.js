@@ -1,6 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
+import { graphql } from 'react-apollo'
+import gql from 'graphql-tag'
 
 const CommentBoxWrapper = styled.div`
   background: #093a43;
@@ -68,7 +70,7 @@ class CommentBox extends React.Component {
   }
   state = { value: '' }
   onChange = (e) => {
-    this.setState({ value: e.value })
+    this.setState({ value: e.target.value })
   }
 
   onSubmit = (e) => {
@@ -91,7 +93,7 @@ class CommentBox extends React.Component {
         <div className="input-box">
           <textarea value={this.state.value} onChange={this.onChange}/>
         </div>
-        <a className="submit-button">
+        <a className="submit-button" onClick={this.onSubmit}>
           <span>
             <em>ส่งข้อความ</em>
           </span>
@@ -104,5 +106,7 @@ class CommentBox extends React.Component {
 CommentBox.propTypes = {
   onSubmit: PropTypes.func.isRequired
 }
+
+
 
 export default CommentBox
