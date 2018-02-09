@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
 const CommentBoxWrapper = styled.div`
@@ -62,11 +63,33 @@ const CommentBoxWrapper = styled.div`
 `
 
 class CommentBox extends React.Component {
+  static propTypes = {
+    
+  }
+  state = { value: '' }
+  onChange = (e) => {
+    this.setState({ value: e.value })
+  }
+
+  onSubmit = (e) => {
+    e.preventDefault()
+    if (!this.props.onSubmit || typeof this.props.onSubmit !== 'function') {
+      return
+    }
+
+    if (this.state.value.length === 0) {
+      return
+    }
+
+    this.props.onSubmit(this.state.value)
+    this.setState({ value: '' })
+  }
+
   render() {
     return (
       <CommentBoxWrapper>
         <div className="input-box">
-          <textarea />
+          <textarea value={this.state.value} onChange={this.onChange}/>
         </div>
         <a className="submit-button">
           <span>
@@ -76,6 +99,10 @@ class CommentBox extends React.Component {
       </CommentBoxWrapper>
     )
   }
+}
+
+CommentBox.propTypes = {
+  onSubmit: PropTypes.func.isRequired
 }
 
 export default CommentBox

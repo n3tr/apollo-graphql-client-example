@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 
@@ -50,11 +51,11 @@ const TopicBox = styled.div`
 `
 
 
-export default class PostListItem extends React.Component {
+class PostListItem extends React.Component {
   render() {
     return (
       <TopicBox>
-        <Link to="#">
+        <Link to="/post/1">
           <div className="post-title">
           [CR]ลุยเที่ยว Macao : เมืองที่ผสมผสานไปด้วยวัฒนธรรมตะวันตกและตะวันออกอย่างลงตัว
           </div>
@@ -67,3 +68,15 @@ export default class PostListItem extends React.Component {
     )
   }
 }
+
+PostListItem.propTypes = {
+  post: PropTypes.shape({
+    id: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.number
+    ]).isRequired,
+    title: PropTypes.string.isRequired
+  })
+}
+
+export default PostListItem
