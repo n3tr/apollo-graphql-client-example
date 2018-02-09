@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import { ApolloProvider } from 'react-apollo';
 
 import Header from './components/Header'
 import HomePage from './pages/HomePage'
@@ -8,6 +9,7 @@ import LoginPage from './pages/LoginPage'
 
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
 import SignupPage from './pages/SignupPage'
+import createApolloClient from './libs/createApolloClient';
 
 const Container = styled.div`
   width: 800px;
@@ -18,6 +20,7 @@ const Container = styled.div`
 class App extends React.Component {
   render() {
     return (
+      <ApolloProvider client={createApolloClient()}>
       <Router>
         <div>
           <Header />
@@ -29,6 +32,7 @@ class App extends React.Component {
           </Container>
         </div>
       </Router>
+      </ApolloProvider>
     )
   }
 }

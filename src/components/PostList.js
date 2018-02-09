@@ -9,12 +9,10 @@ const ListBox = styled.div`
 
 export default class PostList extends React.Component {
   render() {
+    console.log(this.props.posts)
     return (
       <ListBox>
-        <PostListItem />
-        <PostListItem />
-        <PostListItem />
-        <PostListItem />
+        {this.props.posts.map(post => <PostListItem post={post} key={post.id} />)}
       </ListBox>
     )
   }
