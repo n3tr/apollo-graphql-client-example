@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 
+import Header from './components/Header'
 import HomePage from './pages/HomePage'
 import PostPage from './pages/PostPage'
 import LoginPage from './pages/LoginPage'
@@ -13,10 +14,6 @@ const Container = styled.div`
   margin: 0 auto;
 `
 
-const Header = styled.div`
-  height: 40px;
-  margin-bottom: 40px;
-`
 
 class App extends React.Component {
   render() {
