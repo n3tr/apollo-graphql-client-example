@@ -1,20 +1,20 @@
 import React from 'react'
 import styled from 'styled-components'
-import TopicListItem from './TopicListItem'
+import PostListItem from './PostListItem'
 
 const ListBox = styled.div`
   border: 1px solid #6c73a6;
   min-height: 300px
 `
 
-export default class TopicList extends React.Component {
+export default class PostList extends React.Component {
   render() {
     return (
       <ListBox>
-        <TopicListItem />
-        <TopicListItem />
-        <TopicListItem />
-        <TopicListItem />
+        <PostListItem />
+        <PostListItem />
+        <PostListItem />
+        <PostListItem />
       </ListBox>
     )
   }

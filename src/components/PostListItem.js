@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import { Link } from 'react-router-dom'
 
 
 const TopicBox = styled.div`
@@ -49,19 +50,18 @@ const TopicBox = styled.div`
 `
 
 
-export default class TopicListItem extends React.Component {
-  
+export default class PostListItem extends React.Component {
   render() {
     return (
       <TopicBox>
-        <a href="#">
+        <Link to="#">
           <div className="post-title">
           [CR]ลุยเที่ยว Macao : เมืองที่ผสมผสานไปด้วยวัฒนธรรมตะวันตกและตะวันออกอย่างลงตัว
           </div>
           <div className="post-desc">
             ถ้าพูดถึง’มาเก๊า’ใครหลายๆคนอาจจะคิดถึงคาสิโนแต่จริงๆแล้วมาเก๊ามีสิ่งที่น่าสนใจหลายอย่างเลยนะ และยังเป็นเมืองที่ผสมผสานไปด้วยวัฒนธรรมตะวันตกและตะวันออกอย่างลงตัวและเป็นที่ท่องเที่ยวที่ไม่ไกลจากบ้านเรามากนัก
           </div>
-        </a>
+        </Link>
         <div className="post-by"><span>หมายเลขสมาชิก 12345</span></div>
       </TopicBox>
     )
