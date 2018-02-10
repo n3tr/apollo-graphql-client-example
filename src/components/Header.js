@@ -31,7 +31,7 @@ class Header extends React.Component {
   renderNonLoggedInMenu = () => {
     return (
       <React.Fragment>
-        <Link to="/login">Login</Link> / <Link to="/signup">Signup</Link>
+        <Link to="/">Home</Link> / <Link to="/login">Login</Link> / <Link to="/signup">Signup</Link>
       </React.Fragment>
     )
   }
@@ -40,7 +40,7 @@ class Header extends React.Component {
     return (
       <React.Fragment>
         <p>You are logged in!!</p>
-        <Link to="/create-post">Create Post</Link> / <a href="/logout" onClick={this.onClickLogout}>Logout</a>
+        <Link to="/">Home</Link> / <Link to="/create-post">Create Post</Link> / <a href="/logout" onClick={this.onClickLogout}>Logout</a>
       </React.Fragment>
     )
   }
@@ -48,6 +48,7 @@ class Header extends React.Component {
 
     return (
       <HeaderWrapper>
+        
         { this.props.isLoggedIn ? this.renderLoggedInMenu() : this.renderNonLoggedInMenu() }
       </HeaderWrapper>
     )
