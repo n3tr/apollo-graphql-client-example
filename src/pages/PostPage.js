@@ -2,6 +2,7 @@ import React from 'react'
 import PostContent from '../components/PostContent'
 import Comment from '../components/Comment'
 import CommentBox from '../components/CommentBox'
+import AuthContext from '../components/AuthContext'
 
 import gql from 'graphql-tag'
 import { graphql, compose } from 'react-apollo'
@@ -17,15 +18,19 @@ class Post extends React.Component {
     }
     const token = localStorage.getItem('token')
     return (
-      <div>
-        <PostContent post={post}/>
-        {
-          post.comments.map(comment => <Comment comment={comment} key={comment.id} />)
-        }
-        {
-          token ? <CommentBox onSubmit={this.onCommentSubmit}/> : null
-        }
-      </div>
+      <AuthContext.Consumer>
+        {(token) => (
+          <div>
+            <PostContent post={post}/>
+            {
+              post.comments.map(comment => <Comment comment={comment} key={comment.id} />)
+            }
+            {
+              token ? <CommentBox onSubmit={this.onCommentSubmit}/> : null
+            }
+        </div>
+        )}
+      </AuthContext.Consumer>
     )
   }
 }
