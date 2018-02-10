@@ -6,7 +6,7 @@ import { connect } from 'react-redux'
 
 class Post extends React.Component {
   state = {
-    comment: ''
+    comment: '',
   }
 
   onCommentChange = value => {
@@ -38,6 +38,6 @@ class Post extends React.Component {
 export default connect((state, ownProps) => {
   return {
     ...ownProps,
-    isLoggedIn: !!state.token
+    isLoggedIn: !!state.token,
   }
 })(Post)

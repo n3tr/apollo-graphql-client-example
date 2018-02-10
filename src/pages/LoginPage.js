@@ -102,25 +102,24 @@ class LoginPage extends React.Component {
   }
 }
 
-
 const loginMutation = gql`
-mutation login($username: String, $password: String) {
-  login(username: $username, password: $password)
-}
+  mutation login($username: String, $password: String) {
+    login(username: $username, password: $password)
+  }
 `
 const withMutation = graphql(loginMutation, {
   props: ({ mutate, ownProps }) => {
     return {
       async performLogin(username, password) {
-        const loginResult = await mutate({ variables: { username, password }})
-        const { data: { login }}  = loginResult
+        const loginResult = await mutate({ variables: { username, password } })
+        const { data: { login } } = loginResult
         if (login) {
           ownProps.dispatch({ type: 'LOGIN', token: login })
           ownProps.history.replace('/')
         }
-      }
+      },
     }
-  }
+  },
 })
 
 const withStore = connect()
