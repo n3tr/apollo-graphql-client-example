@@ -68,30 +68,31 @@ class CommentBox extends React.Component {
   }
   state = { value: '' }
   onChange = (e) => {
-    this.setState({ value: e.value })
+    e.preventDefault()
+    this.props.onChange(e.target.value)
   }
 
   onSubmit = (e) => {
+    
     e.preventDefault()
     if (!this.props.onSubmit || typeof this.props.onSubmit !== 'function') {
       return
     }
 
-    if (this.state.value.length === 0) {
+    if (this.props.value.length === 0) {
       return
     }
 
-    this.props.onSubmit(this.state.value)
-    this.setState({ value: '' })
+    this.props.onSubmit(this.props.value)
   }
 
   render() {
     return (
       <CommentBoxWrapper>
         <div className="input-box">
-          <textarea value={this.state.value} onChange={this.onChange}/>
+          <textarea value={this.props.value} onChange={this.onChange}/>
         </div>
-        <a className="submit-button">
+        <a className="submit-button" onClick={this.onSubmit}>
           <span>
             <em>ส่งข้อความ</em>
           </span>

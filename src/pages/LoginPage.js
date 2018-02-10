@@ -1,19 +1,17 @@
 import React from 'react'
 import styled from 'styled-components'
 
-
 const LoginBoxWrapepr = styled.div`
   padding: 40px 10px;
-  background: #2D2A49;
-  border: solid 1px #25223C;
+  background: #2d2a49;
+  border: solid 1px #25223c;
 
   h2 {
     margin-left: 150px;
   }
   .input-container {
-    
     margin-bottom: 16px;
-    
+
     label {
       float: left;
       padding-top: 3px;
@@ -39,24 +37,56 @@ const LoginBoxWrapepr = styled.div`
       color: #fff;
     }
     input.submit {
-      margin-left: 150px
+      margin-left: 150px;
     }
   }
 `
 
 class LoginPage extends React.Component {
+  state = {
+    username: '',
+    password: ''
+  }
+
+  onUsernameChange = e => {
+    e.preventDefault()
+    this.setState({ username: e.target.value })
+  }
+
+  onPassowrdChange = e => {
+    e.preventDefault()
+    this.setState({ password: e.target.value })
+  }
+
+  onFormSubmit = e => {
+    e.preventDefault()
+    console.log(this.state)
+  }
+  
   render() {
-    return(
+    return (
       <LoginBoxWrapepr>
         <h2>เข้าสู่ระบบ</h2>
-        <form>
+        <form onSubmit={this.onFormSubmit}>
           <div className="input-container">
-            <label>อีเมล์</label>
-            <input className="text" name="username" type="text" />
+            <label>ชื่อสมาชิก</label>
+            <input
+              className="text"
+              name="username"
+              type="text"
+              value={this.state.username}
+              onChange={this.onUsernameChange}
+            />
           </div>
           <div className="input-container">
             <label>รหัสผ่าน</label>
-            <input className="text" name="password" type="password" />
+            <input
+              className="text"
+              name="password"
+              type="password"
+              value={this.state.password}
+              onChange={this.onPassowrdChange}
+            />
           </div>
 
           <div className="input-container">
@@ -67,6 +97,5 @@ class LoginPage extends React.Component {
     )
   }
 }
-
 
 export default LoginPage
