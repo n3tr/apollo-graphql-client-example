@@ -45,7 +45,7 @@ const LoginBoxWrapepr = styled.div`
 class LoginPage extends React.Component {
   state = {
     username: '',
-    password: ''
+    password: '',
   }
 
   onUsernameChange = e => {
@@ -62,7 +62,7 @@ class LoginPage extends React.Component {
     e.preventDefault()
     console.log(this.state)
   }
-  
+
   render() {
     return (
       <LoginBoxWrapepr>

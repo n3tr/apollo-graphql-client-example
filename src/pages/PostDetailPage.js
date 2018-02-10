@@ -5,7 +5,7 @@ import CommentBox from '../components/CommentBox'
 
 class Post extends React.Component {
   state = {
-    comment: ''
+    comment: '',
   }
 
   onCommentChange = value => {
@@ -15,17 +15,18 @@ class Post extends React.Component {
   onSubmitComment = value => {
     console.log(this.state)
   }
-  
+
   render() {
     return (
       <div>
         <PostContent />
         <Comment />
         <Comment />
-        <CommentBox 
-        value={this.state.comment}
-        onChange={this.onCommentChange}
-        onSubmit={this.onSubmitComment}/>
+        <CommentBox
+          value={this.state.comment}
+          onChange={this.onCommentChange}
+          onSubmit={this.onSubmitComment}
+        />
       </div>
     )
   }

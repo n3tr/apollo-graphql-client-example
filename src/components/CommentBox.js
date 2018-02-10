@@ -63,17 +63,14 @@ const CommentBoxWrapper = styled.div`
 `
 
 class CommentBox extends React.Component {
-  static propTypes = {
-    
-  }
+  static propTypes = {}
   state = { value: '' }
-  onChange = (e) => {
+  onChange = e => {
     e.preventDefault()
     this.props.onChange(e.target.value)
   }
 
-  onSubmit = (e) => {
-    
+  onSubmit = e => {
     e.preventDefault()
     if (!this.props.onSubmit || typeof this.props.onSubmit !== 'function') {
       return
@@ -90,7 +87,7 @@ class CommentBox extends React.Component {
     return (
       <CommentBoxWrapper>
         <div className="input-box">
-          <textarea value={this.props.value} onChange={this.onChange}/>
+          <textarea value={this.props.value} onChange={this.onChange} />
         </div>
         <a className="submit-button" onClick={this.onSubmit}>
           <span>
@@ -103,7 +100,7 @@ class CommentBox extends React.Component {
 }
 
 CommentBox.propTypes = {
-  onSubmit: PropTypes.func.isRequired
+  onSubmit: PropTypes.func.isRequired,
 }
 
 export default CommentBox

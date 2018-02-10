@@ -1,19 +1,17 @@
 import React from 'react'
 import styled from 'styled-components'
 
-
 const LoginBoxWrapepr = styled.div`
   padding: 40px 10px;
-  background: #2D2A49;
-  border: solid 1px #25223C;
+  background: #2d2a49;
+  border: solid 1px #25223c;
 
   h2 {
     margin-left: 150px;
   }
   .input-container {
-    
     margin-bottom: 16px;
-    
+
     label {
       float: left;
       padding-top: 3px;
@@ -39,8 +37,7 @@ const LoginBoxWrapepr = styled.div`
       color: #fff;
     }
     input.submit {
-      margin-left: 150px
-
+      margin-left: 150px;
     }
   }
 `
@@ -48,9 +45,9 @@ const LoginBoxWrapepr = styled.div`
 class SignupPage extends React.Component {
   state = {
     username: '',
-    password: ''
+    password: '',
   }
-  
+
   onUsernameChange = e => {
     e.preventDefault()
     this.setState({ username: e.target.value })
@@ -67,7 +64,7 @@ class SignupPage extends React.Component {
   }
 
   render() {
-    return(
+    return (
       <LoginBoxWrapepr>
         <h2>ลงทะเบียน</h2>
         <form onSubmit={this.onFormSubmit}>
@@ -100,6 +97,5 @@ class SignupPage extends React.Component {
     )
   }
 }
-
 
 export default SignupPage

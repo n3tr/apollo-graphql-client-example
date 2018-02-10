@@ -7,10 +7,10 @@ const PostCommentWrapper = styled.div`
   margin-bottom: 15px;
   padding-bottom: 0px;
   position: relative;
-  background: #22224E;
+  background: #22224e;
   border-radius: 2px;
-  border: solid 1px #8E8BA7;
-  box-shadow: 1px 2px 8px #221F40;
+  border: solid 1px #8e8ba7;
+  box-shadow: 1px 2px 8px #221f40;
   border-radius: 2px;
 
   padding-left: 45px;
@@ -18,7 +18,7 @@ const PostCommentWrapper = styled.div`
   padding-bottom: 20px;
 
   .comment-number {
-    color: #D3C69A;
+    color: #d3c69a;
     font-size: 13px;
     opacity: 0.5;
     filter: alpha(opacity =50);
@@ -45,6 +45,5 @@ const Comment = () => {
     </PostCommentWrapper>
   )
 }
-
 
 export default Comment

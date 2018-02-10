@@ -5,7 +5,7 @@ import storage from 'redux-persist/lib/storage'
 const App = (state = {}, action) => {
   if (action.type === 'LOGIN') {
     return {
-      token: action.payload.token
+      token: action.payload.token,
     }
   }
 
@@ -23,7 +23,6 @@ const persistConfig = {
 
 const persistedReducer = persistReducer(persistConfig, App)
 
-
 const createAppStore = () => {
   let store = createStore(persistedReducer)
   let persistor = persistStore(store)
@@ -31,5 +30,3 @@ const createAppStore = () => {
 }
 
 export default createAppStore
-
-

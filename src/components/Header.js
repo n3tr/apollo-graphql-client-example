@@ -12,18 +12,16 @@ const HeaderWrapper = styled.div`
 
   a {
     color: #fff;
-    text-decoration: none; 
+    text-decoration: none;
   }
-  
+
   p {
     font-size: 20px;
   }
 `
 
-
 class Header extends React.Component {
-
-  onClickLogout = (e) => {
+  onClickLogout = e => {
     e.preventDefault()
     this.props.dispatch({ type: 'LOGOUT' })
   }
@@ -31,7 +29,8 @@ class Header extends React.Component {
   renderNonLoggedInMenu = () => {
     return (
       <React.Fragment>
-        <Link to="/">Home</Link> / <Link to="/login">Login</Link> / <Link to="/signup">Signup</Link>
+        <Link to="/">Home</Link> / <Link to="/login">Login</Link> /{' '}
+        <Link to="/signup">Signup</Link>
       </React.Fragment>
     )
   }
@@ -40,16 +39,19 @@ class Header extends React.Component {
     return (
       <React.Fragment>
         <p>You are logged in!!</p>
-        <Link to="/">Home</Link> / <Link to="/create-post">Create Post</Link> / <a href="/logout" onClick={this.onClickLogout}>Logout</a>
+        <Link to="/">Home</Link> / <Link to="/create-post">Create Post</Link> /{' '}
+        <a href="/logout" onClick={this.onClickLogout}>
+          Logout
+        </a>
       </React.Fragment>
     )
   }
   render() {
-
     return (
       <HeaderWrapper>
-        
-        { this.props.isLoggedIn ? this.renderLoggedInMenu() : this.renderNonLoggedInMenu() }
+        {this.props.isLoggedIn
+          ? this.renderLoggedInMenu()
+          : this.renderNonLoggedInMenu()}
       </HeaderWrapper>
     )
   }

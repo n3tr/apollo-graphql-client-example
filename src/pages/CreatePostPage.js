@@ -3,15 +3,15 @@ import styled from 'styled-components'
 
 const CreatePostBoxWrapper = styled.div`
   padding: 40px 10px;
-  background: #2D2A49;
-  border: solid 1px #25223C;
+  background: #2d2a49;
+  border: solid 1px #25223c;
 
   h2 {
     margin-left: 150px;
   }
   .input-container {
     margin-bottom: 16px;
-    
+
     label {
       float: left;
       padding-top: 3px;
@@ -20,7 +20,8 @@ const CreatePostBoxWrapper = styled.div`
       color: #ffffff;
       margin-right: 20px;
     }
-    input.text, textarea {
+    input.text,
+    textarea {
       width: 400px;
       background: #605d89;
       color: #ffffff;
@@ -41,28 +42,28 @@ const CreatePostBoxWrapper = styled.div`
       height: 120px;
     }
     input.submit {
-      margin-left: 150px
+      margin-left: 150px;
     }
   }
 `
 
 class CreatePostPage extends React.Component {
-  state = { 
+  state = {
     title: '',
-    content: ''
+    content: '',
   }
 
-  onTitleChange = (e) => {
+  onTitleChange = e => {
     e.preventDefault()
     this.setState({ title: e.target.value })
-  } 
+  }
 
-  onContentChange = (e) => {
+  onContentChange = e => {
     e.preventDefault()
     this.setState({ content: e.target.value })
   }
 
-  onFormSubmit = (e) => {
+  onFormSubmit = e => {
     e.preventDefault()
     console.log(this.state)
   }
@@ -74,11 +75,19 @@ class CreatePostPage extends React.Component {
         <form onSubmit={this.onFormSubmit}>
           <div className="input-container">
             <label>หัวข้อ</label>
-            <input className="text" value={this.state.title} onChange={this.onTitleChange} />
+            <input
+              className="text"
+              value={this.state.title}
+              onChange={this.onTitleChange}
+            />
           </div>
           <div className="input-container">
             <label>เนื้อหา</label>
-            <textarea className="text" value={this.state.content} onChange={this.onContentChange} />
+            <textarea
+              className="text"
+              value={this.state.content}
+              onChange={this.onContentChange}
+            />
           </div>
 
           <div className="input-container">
