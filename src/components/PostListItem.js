@@ -51,20 +51,15 @@ const TopicBox = styled.div`
 
 class PostListItem extends React.Component {
   render() {
+    const { post } = this.props
     return (
       <TopicBox>
         <Link to="/post/1">
-          <div className="post-title">
-            [CR]ลุยเที่ยว Macao :
-            เมืองที่ผสมผสานไปด้วยวัฒนธรรมตะวันตกและตะวันออกอย่างลงตัว
-          </div>
-          <div className="post-desc">
-            ถ้าพูดถึง’มาเก๊า’ใครหลายๆคนอาจจะคิดถึงคาสิโนแต่จริงๆแล้วมาเก๊ามีสิ่งที่น่าสนใจหลายอย่างเลยนะ
-            และยังเป็นเมืองที่ผสมผสานไปด้วยวัฒนธรรมตะวันตกและตะวันออกอย่างลงตัวและเป็นที่ท่องเที่ยวที่ไม่ไกลจากบ้านเรามากนัก
-          </div>
+          <div className="post-title">{post.title}</div>
+          <div className="post-desc">{post.content}</div>
         </Link>
         <div className="post-by">
-          <span>หมายเลขสมาชิก 12345</span>
+          <span>หมายเลขสมาชิก {post.user.id}</span>
         </div>
       </TopicBox>
     )
