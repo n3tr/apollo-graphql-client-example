@@ -3,11 +3,12 @@ import styled from 'styled-components'
 
 import Header from './components/Header'
 import HomePage from './pages/HomePage'
-import PostPage from './pages/PostPage'
+import PostDetailPage from './pages/PostDetailPage'
 import LoginPage from './pages/LoginPage'
 
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
 import SignupPage from './pages/SignupPage'
+import CreatePostPage from './pages/CreatePostPage';
 
 const Container = styled.div`
   width: 800px;
@@ -23,9 +24,10 @@ class App extends React.Component {
           <Header />
           <Container className="container">
             <Route exact path="/" component={HomePage} />
-            <Route path="/post/:id" component={PostPage} />
+            <Route path="/post/:id" component={PostDetailPage} />
             <Route path="/login" component={LoginPage} />
-            <Route path="/signup" component={SignupPage} />
+            <Route path="/signup" component={SignupPage} /> 
+            <Route path="/create-post" component={CreatePostPage} />
           </Container>
         </div>
       </Router>

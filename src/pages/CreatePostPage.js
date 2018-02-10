@@ -1,8 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 
-
-const LoginBoxWrapepr = styled.div`
+const CreatePostBoxWrapper = styled.div`
   padding: 40px 10px;
   background: #2D2A49;
   border: solid 1px #25223C;
@@ -11,7 +10,6 @@ const LoginBoxWrapepr = styled.div`
     margin-left: 150px;
   }
   .input-container {
-    
     margin-bottom: 16px;
     
     label {
@@ -22,8 +20,8 @@ const LoginBoxWrapepr = styled.div`
       color: #ffffff;
       margin-right: 20px;
     }
-    input.text {
-      width: 250px;
+    input.text, textarea {
+      width: 400px;
       background: #605d89;
       color: #ffffff;
       border-color: #24233a;
@@ -38,35 +36,58 @@ const LoginBoxWrapepr = styled.div`
 
       color: #fff;
     }
+
+    textarea {
+      height: 120px;
+    }
     input.submit {
       margin-left: 150px
     }
   }
 `
 
-class LoginPage extends React.Component {
+class CreatePostPage extends React.Component {
+  state = { 
+    title: '',
+    content: ''
+  }
+
+  onTitleChange = (e) => {
+    e.preventDefault()
+    this.setState({ title: e.target.value })
+  } 
+
+  onContentChange = (e) => {
+    e.preventDefault()
+    this.setState({ content: e.target.value })
+  }
+
+  onFormSubmit = (e) => {
+    e.preventDefault()
+    console.log(this.state)
+  }
+
   render() {
-    return(
-      <LoginBoxWrapepr>
-        <h2>เข้าสู่ระบบ</h2>
-        <form>
+    return (
+      <CreatePostBoxWrapper>
+        <h2>Create Post</h2>
+        <form onSubmit={this.onFormSubmit}>
           <div className="input-container">
-            <label>อีเมล์</label>
-            <input className="text" name="username" type="text" />
+            <label>หัวข้อ</label>
+            <input className="text" value={this.state.title} onChange={this.onTitleChange} />
           </div>
           <div className="input-container">
-            <label>รหัสผ่าน</label>
-            <input className="text" name="password" type="password" />
+            <label>เนื้อหา</label>
+            <textarea className="text" value={this.state.content} onChange={this.onContentChange} />
           </div>
 
           <div className="input-container">
             <input className="submit" type="submit" />
           </div>
         </form>
-      </LoginBoxWrapepr>
+      </CreatePostBoxWrapper>
     )
   }
 }
 
-
-export default LoginPage
+export default CreatePostPage
