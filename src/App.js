@@ -15,7 +15,6 @@ const Container = styled.div`
   margin: 0 auto;
 `
 
-
 class App extends React.Component {
   render() {
     return (
