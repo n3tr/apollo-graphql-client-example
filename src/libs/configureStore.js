@@ -5,7 +5,7 @@ import storage from 'redux-persist/lib/storage'
 const App = (state = {}, action) => {
   if (action.type === 'LOGIN') {
     return {
-      token: action.payload.token,
+      token: action.token,
     }
   }
 
