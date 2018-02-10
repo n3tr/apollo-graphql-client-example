@@ -32,8 +32,6 @@ const postsQuery = gql`
 const withData = graphql(postsQuery, {
   name: 'allPosts',
   props: ({ allPosts, ownProps }) => {
-    console.log('allPosts', allPosts)
-    console.log('ownProps', ownProps)
     return {
       ...ownProps,
       posts: allPosts.posts || [],
