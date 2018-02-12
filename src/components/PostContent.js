@@ -41,15 +41,11 @@ class PostContent extends React.Component {
       <DisplayPostWrapper>
         <div>
           <h2 className="post-title">
-            ผมอยากรู้ว่าการจับคู่ อาหารกับไวน์ ใช้อะไรเป็นตัวตัดสินบ้างครับ
-            (ไวน์แดง)
+            { this.props.post.title }
           </h2>
         </div>
         <div className="post-body">
-          พอดีผมได้โปรเจคมาเป็นการจับคู่ไวน์แดงกับอาหารต่างๆ
-          ตอนนี้ก็กำลังหาข้อมูล (วิชา data mining) เท่าที่สะสมข้อมูลได้มา
-          ผมพยายามจะหา Attribute ที่มันเหมือน ๆ กัน ตอนนี้ที่เห็นเลย ก็คือ กรด
-          กับ แทนนิน และ Alcohol by Volume
+          { this.props.post.content }
         </div>
       </DisplayPostWrapper>
     )

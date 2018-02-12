@@ -11,10 +11,9 @@ export default class PostList extends React.Component {
   render() {
     return (
       <ListBox>
-        <PostListItem />
-        <PostListItem />
-        <PostListItem />
-        <PostListItem />
+        {
+          this.props.posts.map(post => <PostListItem key={post.id} post={post} />)
+        }
       </ListBox>
     )
   }

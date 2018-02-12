@@ -1,5 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
+import gql from 'graphql-tag'
+import { graphql, compose } from 'react-apollo'
+import { connect } from 'react-redux'
 
 const LoginBoxWrapepr = styled.div`
   padding: 40px 10px;
@@ -61,6 +64,9 @@ class LoginPage extends React.Component {
   onFormSubmit = e => {
     e.preventDefault()
     console.log(this.state)
+
+    const { username, password } = this.state 
+    this.props.performLogin(username, password)
   }
 
   render() {
@@ -98,4 +104,36 @@ class LoginPage extends React.Component {
   }
 }
 
-export default LoginPage
+const loginMutation = gql`
+mutation login($username: String, $password: String) {
+  token: login(username: $username, password: $password)
+}
+`
+const withMutation = graphql(loginMutation, {
+  props: ({ mutate, ownProps}) => {
+    return {
+      ...ownProps,
+      performLogin: async (username, password) => {
+        // Send login mutation
+        const result = await mutate({
+          variables: { username, password }
+        })
+        if (result.data.token) {
+          // Dispatch token
+          ownProps.dispatch({
+            type: 'LOGIN',
+            payload: {
+              token: result.data.token
+            }
+          })
+          // redirect to home
+          ownProps.history.replace('/')
+        }
+      }
+    }
+  }
+})
+
+const withState = connect()
+
+export default compose(withState, withMutation)(LoginPage)

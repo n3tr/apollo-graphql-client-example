@@ -1,5 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
+import gql from 'graphql-tag'
+import { graphql } from 'react-apollo'
 
 const CreatePostBoxWrapper = styled.div`
   padding: 40px 10px;
@@ -66,6 +68,8 @@ class CreatePostPage extends React.Component {
   onFormSubmit = e => {
     e.preventDefault()
     console.log(this.state)
+    const { title, content } = this.state
+    this.props.createPost(title, content)
   }
 
   render() {
@@ -99,4 +103,62 @@ class CreatePostPage extends React.Component {
   }
 }
 
-export default CreatePostPage
+const createPostMutation = gql`
+mutation createPost($data: CreatePostInput) {
+  post: createPost(data: $data) {
+    id
+    title
+    content
+    
+  	user {
+      id
+      username
+    }
+  }
+}
+`
+
+const postsQuery = gql`
+query allPosts {
+  posts {
+    id
+    title
+    content
+    
+    user {
+      id
+      username
+    }
+  }
+}
+`
+
+const withMutation = graphql(createPostMutation, {
+  props({ mutate, ownProps }) {
+    return {
+      ...ownProps,
+      createPost: async (title, content) => {
+        const result = await mutate({
+          variables: { data: { title, content } },
+          // refetchQueries: [ { query: postsQuery } ]
+
+          update: (proxy, { data: { post } }) => {
+            try {
+              const data = proxy.readQuery({ query: postsQuery });
+              data.posts.push(post)
+              proxy.writeQuery({ query: postsQuery, data });
+            } catch (e) {
+
+            }
+          },
+
+
+        })
+        const id = result.data.createPost.id
+        // ownProps.history.replace(`/post/${id}`)
+      }
+    }
+  }
+})
+
+export default withMutation(CreatePostPage)

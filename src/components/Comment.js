@@ -33,14 +33,14 @@ const PostCommentWrapper = styled.div`
   }
 `
 
-const Comment = () => {
+const Comment = ({ comment }) => {
   return (
     <PostCommentWrapper>
-      <span className="comment-number">ความคิดเห็นที่ 1</span>
+      <span className="comment-number">
+        ความคิดเห็นที่ {comment.id}
+      </span>
       <div className="comment-body">
-        ฟังจากคนฝรั่งเศสเขาบอกว่าหลักๆคือสีของเนื้อละครับ
-        ถ้าเนื้อแดงๆอย่างเนื้อวัวก็กินกับไวน์แดง
-        ถ้าเนื้อสีขาวอย่างเนื้อปลาก็กินกับไวน์ขาว
+        { comment.content }
       </div>
     </PostCommentWrapper>
   )
